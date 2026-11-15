@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>indianamericana</title>
+<meta name="description" content="recipes &amp; stories of an indian-and-american family in 1950s indiana">
+<meta property="og:title" content="indianamericana">
+<meta property="og:description" content="recipes &amp; stories of an indian-and-american family in 1950s indiana">
+<meta property="og:image" content="images/grandparents.webp">
+<style>
+  :root {
+    --paper: #ffffff;
+    --ink: #1b1b1b;
+    --soft: #6b6b6b;
+    --rule: #d9d9d9;
+    --blue: #2a3b78;          /* the ink of her signature */
+    --mono: "Courier New", Courier, monospace;
+  }
+  * { box-sizing: border-box; }
+  *, *::before, *::after, input, button, select, textarea { font-family: var(--mono); }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.7 var(--mono);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  ::selection { background: #e8ebf5; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 620px; }
+
+  /* ---------- top bar ---------- */
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    background: #fff;
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; height: 56px; font-size: 14px;
+  }
+  .bar .mark { text-decoration: none; letter-spacing: .02em; }
+  .bar nav { display: flex; gap: 22px; }
+  .bar nav a { white-space: nowrap; }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 120px 0 72px; text-align: center; }
+  .hero h1 {
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(34px, 7.4vw, 76px);
+    letter-spacing: -.02em;
+    line-height: 1;
+  }
+  .for-anil {
+    margin: 30px 0 0;
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 18px;
+  }
+  .for-anil img { height: 58px; width: auto; margin: -8px 0 0 2px; }
+  .hero .desc {
+    margin: 26px auto 0; max-width: 46ch;
+    color: var(--soft); font-size: 15px;
+  }
+  .hero .cta { margin-top: 40px; display: flex; justify-content: center; gap: 10px 30px; flex-wrap: wrap; font-size: 15px; }
+
+  /* links: plain underlined text, like the rest of the page */
+  a, .link {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: color .15s;
+  }
+  a:hover, .link:hover { color: var(--blue); }
+  .link {
+    font: inherit; font-size: 15px; letter-spacing: .02em;
+    background: none; border: 0; padding: 0; cursor: pointer; align-self: flex-start;
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: 96px 0; }
+  section + section { border-top: 1px solid var(--rule); }
+  .label {
+    font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--soft); margin: 0 0 40px;
+  }
+  .label span { text-decoration: underline; text-underline-offset: 5px; }
+  h2 { font-weight: 400; font-size: 24px; line-height: 1.35; margin: 0 0 22px; }
+  p { margin: 0 0 1.2em; }
+  .caption { font-size: 13px; color: var(--soft); margin-top: 14px; }
+
+  /* paper pages */
+  .page {
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 12px 32px rgba(0,0,0,.08);
+  }
+  .page a { display: block; }
+  .tilt-l { transform: rotate(-1.2deg); }
+  .tilt-r { transform: rotate(1deg); }
+
+  .placeholder { background: #fff6d6; }
+
+  /* ---------- previews ---------- */
+  .previews { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .preview > h3 {
+    font-weight: 400; font-size: 15px; letter-spacing: .08em;
+    text-decoration: underline; text-underline-offset: 5px; margin: 28px 0 10px;
+  }
+  .preview > p { font-size: 14px; color: var(--soft); }
+  blockquote {
+    margin: 64px auto 0; max-width: 640px; text-align: center;
+    font-size: 20px; line-height: 1.6;
+  }
+  blockquote cite { display: block; margin-top: 14px; font-style: normal; font-size: 13px; color: var(--soft); }
+
+  /* ---------- contents ---------- */
+  .contents { list-style: none; margin: 0; padding: 0; counter-reset: r; }
+  .contents li {
+    counter-increment: r;
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 9px 0; font-size: 15px; letter-spacing: .04em;
+  }
+  .contents li::before { content: counter(r, decimal-leading-zero); color: var(--soft); font-size: 13px; }
+  .contents li .dots { flex: 1; border-bottom: 1px dotted #b5b5b5; transform: translateY(-4px); min-width: 20px; }
+  .contents li .tag { font-size: 12px; color: var(--blue); letter-spacing: .06em; }
+
+  /* ---------- get the book ---------- */
+  .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ink); }
+  .option { padding: 36px 30px 32px; display: flex; flex-direction: column; }
+  .option + .option { border-left: 1px solid var(--ink); }
+  .option h3 { font-weight: 400; font-size: 18px; margin: 0 0 6px; }
+  .option .price { font-size: 30px; margin: 10px 0 4px; }
+  .option .fine { font-size: 13px; color: var(--soft); margin: 0 0 24px; flex: 1; }
+  .option form { display: flex; flex-direction: column; gap: 10px; }
+  .option input[type=email] {
+    font: inherit; font-size: 14px; padding: 12px 12px;
+    border: 1px solid var(--ink); border-radius: 0; background: #fff; color: var(--ink);
+  }
+  .option input[type=email]:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+
+  footer { padding: 64px 0 80px; text-align: center; font-size: 13px; color: var(--soft); border-top: 1px solid var(--rule); }
+  footer img { height: 40px; margin: 0 auto 18px; opacity: .85; }
+
+  /* ---------- paper + photo pairs ---------- */
+  .pair {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    padding: 24px 0;
+  }
+  .pair[data-paper="left"]  .paper    { grid-column: 1 / span 7; grid-row: 1; z-index: 2; --pull: -26px; }
+  .pair[data-paper="left"]  .snapshot { grid-column: 7 / span 5; grid-row: 1; z-index: 1; --pull: 30px; }
+  .pair[data-paper="right"] .instax   { grid-column: 2 / span 5; grid-row: 1; z-index: 1; --pull: -30px; }
+  .pair[data-paper="right"] .paper    { grid-column: 6 / span 7; grid-row: 1; z-index: 2; --pull: 26px; }
+
+  .card {
+    margin: 0; cursor: zoom-in; outline: none;
+    transform: rotate(var(--rot, 0deg));
+    transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 10px 28px rgba(0,0,0,.10);
+  }
+  @media (hover: hover) {
+    .card:hover, .card:focus-visible {
+      z-index: 3 !important;
+      transform: translate(var(--pull), -10px) rotate(calc(var(--rot) * .35)) scale(1.03);
+      box-shadow: 0 2px 4px rgba(0,0,0,.06), 0 26px 60px rgba(0,0,0,.18);
+    }
+  }
+  .card:focus-visible { box-shadow: 0 0 0 2px var(--blue), 0 26px 60px rgba(0,0,0,.18); }
+
+  /* photos */
+  .snapshot { background: none; box-shadow: none !important; }
+  .snapshot img { filter: drop-shadow(0 1px 2px rgba(0,0,0,.12)) drop-shadow(0 8px 16px rgba(0,0,0,.10)); transition: filter .5s; }
+  .snapshot:hover img { filter: drop-shadow(0 1px 2px rgba(0,0,0,.12)) drop-shadow(0 20px 30px rgba(0,0,0,.16)); }
+  .snapshot figcaption { font-size: 13px; color: var(--soft); padding: 14px 2px 18px; }
+  .instax { position: relative; }
+  .instax figcaption {
+    position: absolute; left: 0; right: 0; bottom: 6.5%;
+    text-align: center; font-size: 13px; color: #555;
+  }
+  .stage .instax figcaption { font-size: 18px; }
+  .instax { background: transparent; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 10px 28px rgba(0,0,0,.12); }
+
+  /* typed paper: 8.5 x 11, type scales with the sheet (Courier at 10 chars/inch) */
+  .paper {
+    container-type: inline-size;
+    aspect-ratio: 8.5 / 11;
+    display: flex; flex-direction: column;
+  }
+  .paper > .paper-in { flex: 1; }
+  .paper-in {
+    position: relative;
+    min-height: 100%;
+    padding: 11cqw 11.5cqw 10cqw 13cqw;
+    font-size: 1.96cqw;
+    line-height: 1.38;
+    color: #262626;
+    hyphens: none;
+  }
+  .paper-in p { margin: 0 0 1.15em; }
+  .paper-in .ind { text-indent: 4ch; }
+  .paper-in .date { text-align: right; margin-bottom: 3.2em; }
+  .paper-in .closing { margin: 1.6em 0 0 45%; }
+  .paper-in .closing p { margin: 0; }
+  .paper-in .sig { width: 15em; height: auto; margin: .3em 0 0 -1.5em; text-shadow: none; }
+  .paper-in .sig-jazmi { width: 7.5em; margin: .7em 0 0 .5em; }
+  /* empty comb-binding slots, as if the page was taken out of the binding.
+     The holes are cut with a mask so the page underneath (and the sheet's shadow) shows through. */
+  .paper {
+    background: none;
+    box-shadow: none !important;
+    filter: drop-shadow(0 0 .6px rgba(0,0,0,.22)) drop-shadow(0 3px 8px rgba(0,0,0,.04));
+    transition: transform .5s cubic-bezier(.2,.8,.2,1), filter .5s;
+  }
+  @media (hover: hover) {
+    .paper:hover, .paper:focus-visible { filter: drop-shadow(0 0 .6px rgba(0,0,0,.24)) drop-shadow(0 14px 24px rgba(0,0,0,.08)); }
+  }
+  .paper .paper-in {
+    background: #fff;
+    --holes: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 1294'%3E%3Cpath fill-rule='evenodd' d='M0 0H80V1294H0ZM30 26.1H64V42.1H30ZM30 94.2H64V110.2H30ZM30 162.3H64V178.3H30ZM30 230.4H64V246.4H30ZM30 298.5H64V314.5H30ZM30 366.6H64V382.6H30ZM30 434.7H64V450.7H30ZM30 502.8H64V518.8H30ZM30 570.9H64V586.9H30ZM30 639.0H64V655.0H30ZM30 707.1H64V723.1H30ZM30 775.2H64V791.2H30ZM30 843.3H64V859.3H30ZM30 911.4H64V927.4H30ZM30 979.5H64V995.5H30ZM30 1047.6H64V1063.6H30ZM30 1115.7H64V1131.7H30ZM30 1183.8H64V1199.8H30ZM30 1251.9H64V1267.9H30Z'/%3E%3C/svg%3E");
+    /* 19-slot strip sized to a letter page; plain paper below it (for a longer sheet) and to the right of it */
+    -webkit-mask: var(--holes) 0 0 / 8cqw 129.4cqw no-repeat,
+      linear-gradient(#000,#000) 0 129.3cqw / 8cqw 100% no-repeat,
+      linear-gradient(#000,#000) 7.9cqw 0 / calc(100% - 7.9cqw) 100% no-repeat;
+    mask: var(--holes) 0 0 / 8cqw 129.4cqw no-repeat,
+      linear-gradient(#000,#000) 0 129.3cqw / 8cqw 100% no-repeat,
+      linear-gradient(#000,#000) 7.9cqw 0 / calc(100% - 7.9cqw) 100% no-repeat;
+  }
+  .stage .paper { filter: drop-shadow(0 0 .6px rgba(0,0,0,.2)) drop-shadow(0 18px 40px rgba(0,0,0,.08)); }
+  .paper-in .gap { margin-top: 3.4em; }
+  .paper-in.elite { font-size: 1.8cqw; padding: 9cqw 9cqw 8cqw 13cqw; }   /* smaller 12-pitch type, as on the original page */
+  .paper-in .typed { font: inherit; margin: 0; white-space: pre; }
+  .preview .card { --pull: 0px; }
+
+  .hint { text-align: center; font-size: 12px; color: var(--soft); letter-spacing: .06em; margin: 26px 0 0; }
+
+  /* ---------- the lifted sheet ---------- */
+  body.lifted-open { overflow: hidden; }
+  .stage {
+    position: fixed; inset: 0; z-index: 50;
+    overflow-y: auto; overscroll-behavior: contain;
+    display: flex; justify-content: center; align-items: flex-start;
+    padding: 72px 16px 72px;
+    background: rgba(255,255,255,0);
+    transition: background .45s;
+    visibility: hidden;
+  }
+  .stage.on { visibility: visible; background: rgba(255,255,255,.9); backdrop-filter: blur(3px); }
+  .stage .card { cursor: zoom-out; transform: none; transition: none; flex: none; }
+  .stage .paper { width: min(860px, 100%); }
+  .stage .snapshot, .stage .instax { width: min(var(--w), 100%); }
+  .stage .instax { box-shadow: 0 2px 6px rgba(0,0,0,.08), 0 40px 90px rgba(0,0,0,.22); }
+  .stage .close {
+    position: fixed; top: 14px; right: 16px; z-index: 51;
+    font: inherit; font-size: 13px; letter-spacing: .04em;
+    background: #fff; border: 1px solid var(--ink); padding: 8px 12px; cursor: pointer;
+    opacity: 0; transition: opacity .3s .15s;
+  }
+  .stage.on .close { opacity: 1; }
+  .stage .close:hover { background: var(--ink); color: #fff; }
+
+  /* ---------- small screens ---------- */
+  @media (max-width: 820px) {
+    .previews { grid-template-columns: 1fr; gap: 48px; }
+    .pair { grid-template-columns: 1fr; }
+    .pair .card { grid-column: 1 !important; grid-row: auto !important; }
+    .pair .snapshot, .pair .instax { width: 72%; justify-self: end; margin-top: -14%; }
+    .pair[data-paper="right"] .instax { justify-self: start; margin: 0 0 -14%; }
+    .pair[data-paper="right"] .paper { margin-left: 6%; }
+
+    .options { grid-template-columns: 1fr; }
+    .option + .option { border-left: 0; border-top: 1px solid var(--ink); }
+    section { padding: 72px 0; }
+    .hero { padding: 84px 0 56px; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    .hero.wrap { padding: 64px 16px 48px; }
+    .bar .mark { display: none; }
+    .bar .wrap { justify-content: center; height: auto; padding-top: 10px; padding-bottom: 10px; }
+    .bar nav { flex-wrap: wrap; justify-content: center; gap: 4px 18px; font-size: 13px; }
+    .tilt-l, .tilt-r { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top">indianamericana</a>
+    <nav>
+      <a href="#list">join our mailing list</a>
+      <a href="#pdf">buy the pdf</a>
+      <a href="#preorder">pre-order your book</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== hero ===== -->
+  <div class="hero wrap">
+    <h1>indianamericana</h1>
+    <p class="for-anil">for anil, love <img src="images/signature-mom.png" alt="Mom (her signature)"></p>
+    <p class="desc">recipes &amp; stories of an indian-and-american family in 1950s indiana</p>
+    <div class="cta">
+      <a href="#list">join our mailing list</a>
+      <a href="#pdf">buy the pdf</a>
+      <a href="#preorder">pre-order your book</a>
+    </div>
+  </div>
+
+  <!-- ===== page one: her letter + the photo ===== -->
+  <section>
+    <div class="wrap">
+      <p class="label"><span>page one</span></p>
+      <div class="pair" data-paper="left">
+        <!-- paper mock-up, transcribed from the original page -->
+        <article class="card paper" style="--rot:-.7deg" tabindex="0" role="button" aria-label="Read her letter: Dear Anil, December 23, 1982">
+          <div class="paper-in">
+            <p class="date">December 23, 1982</p>
+            <p>Dear Anil,</p>
+            <p class="ind">I wish I had time to handwrite this so that it would be more personal, but this year has been so rushed, that it is impossible. So I will go with modern technology and opt for a higher wpm.</p>
+            <p class="ind">I'm glad you are interested in the Indian cooking and in your heritage. For some reason, it seems to be in the nature of human beings to take pride in their background. There are times when that has turned me off - so to speak. You know the types I mean. "Oh, we are English so we are entitled to rule the world." "Or we are terrific - all those foreigners are stupid and dirty." I never see that sort of thing in you though and I am glad. Your interest in your background is a healthy one and a happy one and while I confess to being an awful mother - a careless mother - a mother who just did things off the cuff - but I am so pleased that you turned out to be compassionate. There were times when I wondered about you - you were terrible to your sisters. But you turned out OK.</p>
+            <p class="ind">So, it is with pleasure that I pass on to you our family recipes.</p>
+            <div class="closing">
+              <p>Love,</p>
+              <img class="sig" src="images/signature-mom.png" alt="Mom">
+            </div>
+          </div>
+        </article>
+        <figure class="card snapshot" style="--rot:2deg" tabindex="0" role="button" aria-label="Enlarge the photo of my grandparents">
+          <img src="images/grandparents.webp" alt="gus and betty embracing, 1954">
+          <figcaption>gus and betty, indiana, 1954</figcaption>
+        </figure>
+      </div>
+      <p class="hint">click a page to lift it out</p>
+    </div>
+  </section>
+
+  <!-- ===== jazmi's letter + photo ===== -->
+  <section>
+    <div class="wrap">
+      <p class="label"><span>why now</span></p>
+      <div class="pair" data-paper="right">
+        <figure class="card instax" style="--rot:-2.2deg" tabindex="0" role="button" aria-label="Enlarge the photo of jazmi">
+          <img src="images/me-instax.jpg" alt="jazmi, laughing on a blue couch">
+          <figcaption>jazmi, 2026</figcaption>
+        </figure>
+        <article class="card paper" style="--rot:.6deg" tabindex="0" role="button" aria-label="Read jazmi's letter">
+          <div class="paper-in">
+            <p class="date">November 7, 2026</p>
+            <p>I&rsquo;ve always loved my grandmother&rsquo;s work (her writings, drawings, paintings, recipes, and the genuine sense of self that she brought to all of it&hellip;) but I&rsquo;ve rarely shared it with others. I arrived 66 years late to her story, and while I treasure it, I don&rsquo;t believe that it is mine to tell.</p>
+            <p>This book, for example, was one of her famously perfect and personal Christmas gifts &ndash; made for my favorite (and only) uncle, the sweet baby boy of the family, anil.</p>
+            <p>anil was the one who taught me to spell my first name in lower-case because we as humans are just nouns. There is absolutely nothing proper about us.</p>
+            <p>I shared the book for the first time this summer with my dear friend John. It only occurred to me to share it because he asked for exactly what it is: lentils and simple Indian home cooking and uncomplicated ingredients&hellip; the kind of thing that someone could make in, say, 1950s Indiana with just one dollar in their pocket.</p>
+            <p>John is a retired English professor and immediately told me that I had to publish it. He said that it was food that needed to be eaten and stories that need to be heard and, most of all, that now was the time.</p>
+            <p>So I asked anil for his permission, and then I googled how to publish a cookbook. What I found is that you have to have &ldquo;an audience.&rdquo; That&rsquo;s all that this account is. Please follow, share, enjoy. Show your support&hellip; and hopefully, someday, I&rsquo;ll be able to send you a copy in the mail along with an invitation to a very big family dinner party.</p>
+            <p>I love this book. I love my family. I love everything that they have loved and fought for and still stand for in the minds of everyone who really knew them. The idea that love can be controversial in this world is still crazy to me, so I am determined to have the bravery to talk about it and be proud of it and not be frightened of what someone on the internet might say.</p>
+            <div class="closing">
+              <p>Thank you,</p>
+              <img class="sig sig-jazmi" src="images/signature-jazmi.png" alt="jazmi">
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="hint">click a page to lift it out</p>
+    </div>
+  </section>
+
+  <!-- ===== previews ===== -->
+  <section id="preview">
+    <div class="wrap">
+      <p class="label"><span>a look inside</span></p>
+      <div class="previews">
+        <div class="preview">
+          <article class="card paper" style="--rot:-.5deg" tabindex="0" role="button" aria-label="Read the Fried Lentils page">
+            <div class="paper-in elite">
+              <p class="date"><u>FRIED LENTILS</u></p>
+              <p>NOTE:&nbsp; I always have a fondness for these lentils.&nbsp; Our first Christmas together was as poor in terms of wealth as one could have.&nbsp; I had one dollar.&nbsp; With my one dollar, I bought your father a bottle of cardamons.</p>
+              <p>We lived in a raunchy part of town in Fort Wayne - the part reserved for "blacks".&nbsp; We just could find a place anywhere else.&nbsp; They had always just rented the place.&nbsp; One man was a little more frank.&nbsp; He took me aside and said he didn't like my husband's attitude.&nbsp; He considered him to be too proud.</p>
+              <p>Our apartment was not bad though.&nbsp; It was on the second floor.&nbsp; There was a large kitchen, a smaller living room and a large bedroom.&nbsp; The furniture wasn't elegant but it wasn't crummy either.&nbsp; We had a small tree.&nbsp; I don't remember what we bought that with.&nbsp; Your father wasn't working at the time since he had just graduated and we were about to head to Iowa.&nbsp; Our Christmas dinner was lentils.&nbsp; We made sandwiches out of them - put them between toasted bread.&nbsp; No turkey could have tasted better.</p>
+              <p>Looking back, I think that was one of the most precious Christmas' we ever had.&nbsp; Everything seemed very bleak.&nbsp; At the time, I was still involved with the church and we went to a midnight eve service at a Lutheran church.&nbsp; It was really beautiful - they had decorated with pine and red ribbons and there were candles everywhere - and a creche.&nbsp; The music was well done - really superb.&nbsp; And we went back to our little apartment in the "colored" part of town feeling happy in spite of all the problems we knew we faced.</p>
+              <p class="gap">Put lentils in the skillet and fry in liberal amount of butter.&nbsp; Add salt and red pepper.&nbsp; Cover with water - just enough to cover them.&nbsp; Cook slowly without a lid until the water evaporates.&nbsp; They should be done by that time.&nbsp; Taste - if they need butter, add some until they taste right.&nbsp; I like to cut raw onions on them and eat them with vinegar sometimes.</p>
+            </div>
+          </article>
+          <h3>FRIED LENTILS</h3>
+          <p>Christmas dinner, Fort Wayne, the year they had one dollar between them. Butter, salt, red pepper, and raw onions with vinegar on top.</p>
+        </div>
+        <div class="preview">
+          <article class="card paper" style="--rot:.4deg" tabindex="0" role="button" aria-label="Read the Parathas page">
+            <div class="paper-in">
+              <p class="date">PARATHAS</p>
+<pre class="typed">Put in a large bowl ............... 3 cups flour
+                                    1-1&frac12; t. salt
+(If you want, sprinkle in some
+wheat germ.)
+Mix in with your fingers ........... 1 bar of margarine
+Add water and mix with your hands
+until it is doughy but not too
+wet.  Knead until it feels rubbery
+and smooth.  Heat a skillet.
+Roll out pieces of the dough into
+a round circle or into a triangle
+and then fry.  Place it in the fry
+pan - just enough to heat one side.
+Turn it and butter it.  Turn it
+again until it is brown.  Butter
+the other side and brown it.
+
+If you want the puffed breads, you
+make smaller rounds and fry it in
+deep fat.</pre>
+            </div>
+          </article>
+          <h3>PARATHAS</h3>
+          <p>Three cups of flour, a bar of margarine, and a skillet. Knead &ldquo;until it feels rubbery and smooth.&rdquo;</p>
+        </div>
+      </div>
+      <blockquote>
+        &ldquo;Our Christmas dinner was lentils. We made sandwiches out of them &ndash; put them between toasted bread. No turkey could have tasted better.&rdquo;
+        <cite>&mdash; from FRIED LENTILS</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ===== contents ===== -->
+  <section id="contents">
+    <div class="wrap narrow">
+      <p class="label"><span>the recipes</span></p>
+      <ol class="contents">
+        <li>FRIED LENTILS <span class="dots"></span><span class="tag"><a href="#preview">preview</a></span></li>
+        <li>SOUPY GREEN LENTILS <span class="dots"></span></li>
+        <li>PARATHAS <span class="dots"></span><span class="tag"><a href="#preview">preview</a></span></li>
+        <li>POTATO PANCAKES <span class="dots"></span></li>
+        <li>DADDY&rsquo;S CONCOCTION <span class="dots"></span></li>
+        <li>RAITA <span class="dots"></span></li>
+        <li>SAVORY RICE <span class="dots"></span></li>
+        <li>SAMBAR <span class="dots"></span></li>
+        <li>BARGAIN BARAITHA <span class="dots"></span></li>
+        <li>DRY HOOSAINI KABABS <span class="dots"></span></li>
+        <li>BEEF VINDALOO <span class="dots"></span></li>
+        <li>ALU MATTAR RASA <span class="dots"></span></li>
+        <li>BHUJIA <span class="dots"></span></li>
+        <li>TAMATAR ALU BHAGI TARKARI <span class="dots"></span></li>
+        <li>EGG CURRY <span class="dots"></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== get the book ===== -->
+  <section id="get">
+    <div class="wrap">
+      <p class="label"><span>get the book</span></p>
+      <div class="options">
+
+        <div class="option" id="list">
+          <h3>mailing list</h3>
+          <p class="fine">Occasional letters: new stories from the binder, cooking notes, and when the printed book ships.</p>
+          <!-- Swap YOUR-USERNAME for your Buttondown (or Kit / Mailchimp) form endpoint -->
+          <form action="https://buttondown.com/api/emails/embed-subscribe/YOUR-USERNAME" method="post" target="_blank">
+            <input type="email" name="email" placeholder="you@email.com" required aria-label="email address">
+            <button class="link" type="submit">join our mailing list</button>
+          </form>
+        </div>
+
+        <div class="option" id="pdf">
+          <h3>the pdf</h3>
+          <p class="price">$[__]</p>
+          <p class="fine">Every page, scanned in full. Download link arrives instantly after checkout, and by email.</p>
+          <!-- PDF checkout: replace with your Lemon Squeezy / Payhip / Gumroad product link.
+               See README.md: the platform hosts the file and delivers it the moment payment clears. -->
+          <a class="link" href="https://YOUR-STORE.lemonsqueezy.com/buy/YOUR-PDF-PRODUCT">buy the pdf</a>
+        </div>
+
+        <div class="option" id="preorder">
+          <h3>the printed book</h3>
+          <p class="price">$[__]</p>
+          <p class="fine">Comb-bound like the original. Ships [month year]. <span class="placeholder">[optional: includes the pdf now]</span></p>
+          <!-- Pre-order: replace with a Stripe Payment Link (collect shipping address) or your Shopify product URL -->
+          <a class="link" href="https://buy.stripe.com/YOUR-PREORDER-LINK">pre-order your book</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <img src="images/signature-mom.png" alt="">
+  <p>indianamericana &middot; recipes typed december 1982 &middot; published [year]</p>
+  <p>questions: <a href="mailto:hello@[yourdomain]">hello@[yourdomain]</a></p>
+</footer>
+
+<div class="stage" aria-hidden="true"><button class="close" type="button">&times; put it back</button></div>
+<script>
+(() => {
+  const stage = document.querySelector('.stage');
+  const closeBtn = stage.querySelector('.close');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ease = 'cubic-bezier(.2,.8,.2,1)';
+  let open = null; // { card, clone }
+
+  // from-transform that maps the clone (laid out in the stage) onto the card's spot on the page
+  function fromTransform(card, clone) {
+    const a = card.getBoundingClientRect();
+    const b = clone.getBoundingClientRect();
+    const rot = getComputedStyle(card).getPropertyValue('--rot') || '0deg';
+    const dx = (a.left + a.width / 2) - (b.left + b.width / 2);
+    const dy = (a.top + a.height / 2) - (b.top + b.height / 2);
+    // card bbox is enlarged by its rotation; use offsetWidth for the true width
+    const s = card.offsetWidth / b.width;
+    return `translate(${dx}px, ${dy}px) rotate(${rot}) scale(${s})`;
+  }
+
+  function lift(card) {
+    if (open) return;
+    const clone = card.cloneNode(true);
+    clone.removeAttribute('tabindex');
+    clone.setAttribute('aria-label', 'Close');
+    const img = card.querySelector('img');
+    if (!card.classList.contains('paper') && img) {
+      // photo: as large as the screen allows, keeping its shape
+      const ratio = card.offsetWidth / card.offsetHeight;
+      const h = Math.min(innerHeight - 144, 1100);
+      clone.style.setProperty('--w', Math.round(h * ratio) + 'px');
+    }
+    stage.appendChild(clone);
+    stage.scrollTop = 0;
+    document.body.classList.add('lifted-open');
+    stage.classList.add('on');
+    stage.setAttribute('aria-hidden', 'false');
+    card.style.visibility = 'hidden';
+    open = { card, clone };
+    if (!reduce) clone.animate(
+      [{ transform: fromTransform(card, clone), boxShadow: '0 10px 28px rgba(0,0,0,.1)' }, { transform: 'none' }],
+      { duration: 620, easing: ease }
+    );
+    closeBtn.focus({ preventScroll: true });
+  }
+
+  function putBack() {
+    if (!open) return;
+    const { card, clone } = open;
+    open = null;
+    stage.classList.remove('on');
+    const done = () => {
+      clone.remove();
+      card.style.visibility = '';
+      document.body.classList.remove('lifted-open');
+      stage.setAttribute('aria-hidden', 'true');
+      card.focus({ preventScroll: true });
+    };
+    if (reduce) return done();
+    card.style.visibility = 'hidden';
+    clone.animate([{ transform: 'none' }, { transform: fromTransform(card, clone) }],
+      { duration: 480, easing: ease, fill: 'forwards' }).onfinish = done;
+  }
+
+  document.querySelectorAll('.pair .card, .preview .card').forEach(card => {
+    card.addEventListener('click', () => lift(card));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); lift(card); }
+    });
+  });
+  stage.addEventListener('click', putBack);          // the sheet, the backdrop, or the button
+  addEventListener('keydown', e => { if (e.key === 'Escape') putBack(); });
+})();
+</script>
+</body>
+</html>
