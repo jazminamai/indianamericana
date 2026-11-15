@@ -136,6 +136,7 @@
   .option + .option { border-left: 1px solid var(--ink); }
   .option h3 { font-weight: 400; font-size: 18px; margin: 0 0 6px; }
   .option .price { font-size: 30px; margin: 10px 0 4px; }
+  .option .soon { font-size: 15px; margin: 0; color: var(--soft); }
   .option .fine { font-size: 13px; color: var(--soft); margin: 0 0 24px; flex: 1; }
 
   footer { padding: 64px 0 80px; text-align: center; font-size: 13px; color: var(--soft); border-top: 1px solid var(--rule); }
@@ -469,7 +470,8 @@ deep fat.</pre>
           <p class="fine">Every page, as she typed it. Pay $10, or more if you&rsquo;d like: everything we make goes to an annual family reunion where we cook her recipes and celebrate betty. The download arrives instantly after checkout, and by email.</p>
           <!-- PDF checkout: Lemon Squeezy product with "pay what you want" on, minimum $10.
                Replace the href with the product's checkout link (see README.md). -->
-          <a class="link" href="https://YOUR-STORE.lemonsqueezy.com/buy/YOUR-PDF-PRODUCT">buy the pdf</a>
+          <!-- TODO: swap this line for <a class="link" href="CHECKOUT-LINK">buy the pdf</a> -->
+          <p class="soon">buy the pdf: coming soon (hopefully today)</p>
         </div>
 
         <div class="option" id="preorder">
