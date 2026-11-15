@@ -3,8 +3,8 @@
 The site for *indianamericana*: recipes & stories of an indian-and-american family in 1950s indiana.
 Live at https://indianamericana.pages.dev. One static page (`index.html` + `images/`), deployed with Cloudflare Pages from `main`.
 
-## Still to do
-- **PDF checkout link:** the "buy the pdf" link in `index.html` (search for `YOUR-`).
+## PDF checkout
+https://indianamericana.lemonsqueezy.com/checkout/buy/09f61457-1af8-4f00-857a-c6b193332175
 
 ## The PDF ($10, pay more if you'd like)
 Use **Lemon Squeezy** (about 5% + 50¢ per sale). It hosts the file, delivers it the moment payment clears, and handles sales tax.
