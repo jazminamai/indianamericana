@@ -140,6 +140,9 @@
   .option { padding: 36px 30px 32px; display: flex; flex-direction: column; }
   .option + .option { border-left: 1px solid var(--ink); }
   .option h3 { font-weight: 400; font-size: 18px; margin: 0 0 6px; }
+  .get-intro { max-width: 52ch; margin: -14px 0 40px; font-size: 15px; }
+  .option .price .from { font-size: 15px; color: var(--soft); }
+  #preorder .fine { margin-right: 36px; }
   .option .price { font-size: 30px; margin: 10px 0 4px; }
   .option .note { font-size: 11.5px; line-height: 1.6; color: var(--soft); margin: 18px 0 0; }
   .option .soon { font-size: 15px; margin: 0; color: var(--soft); }
@@ -459,32 +462,33 @@ deep fat.</pre>
   <section id="get">
     <div class="wrap">
       <p class="label"><span>get the book</span></p>
+      <p class="get-intro">every purchase goes toward our annual family reunion, where we celebrate betty and cook her recipes together.</p>
       <div class="options">
         <img class="cutout" src="images/gus-and-betty-cutout.png" alt="gus and betty, 1954, cut out of their photo" loading="lazy">
 
         <div class="option" id="list">
           <h3>mailing list</h3>
           <p class="price">free</p>
-          <p class="fine">Occasional letters: new stories from the binder, cooking notes, and word when the printed book is ready.</p>
+          <p class="fine">occasional letters from me, maybe a few more recipes from the book, stories from the family, and word when the printed book is ready. mostly, this is for numbers when we pitch to publishing...</p>
           <!-- Jotform: "indianamericana mailing list" -->
           <a class="link" href="https://form.jotform.com/263185462976066" target="_blank" rel="noopener">join our mailing list</a>
         </div>
 
         <div class="option" id="pdf">
           <h3>the pdf</h3>
-          <p class="price">$10</p>
-          <p class="fine">Every page, as she typed it. Pay $10, or more if you&rsquo;d like: everything we make goes to an annual family reunion where we cook her recipes and celebrate betty.</p>
+          <p class="price"><span class="from">starting at</span> $10</p>
+          <p class="fine">Every page, as she typed it.</p>
           <!-- PDF checkout: Lemon Squeezy product with "pay what you want" on, minimum $10.
                Replace the href with the product's checkout link (see README.md). -->
           <!-- TODO: swap this line for <a class="link" href="CHECKOUT-LINK">buy the pdf</a> -->
           <p class="soon">buy the pdf: coming soon (hopefully today)</p>
-          <p class="note">The download arrives instantly after checkout, and by email. Questions or problems with your download? <a href="mailto:jazminamaiii@gmail.com">Email us</a> and we&rsquo;ll make it right.</p>
+          <p class="note">The download arrives instantly after checkout. Questions or problems with your download? <a href="mailto:jazminamaiii@gmail.com">Email us</a> and we&rsquo;ll make it right.</p>
         </div>
 
         <div class="option" id="preorder">
           <h3>the printed book</h3>
           <p class="price">coming soon</p>
-          <p class="fine">The price and ship date depend on the printer, so for now it&rsquo;s a list and nothing is charged. We&rsquo;ll email you when it&rsquo;s ready.</p>
+          <p class="fine">we&rsquo;re still working out the details on printing/publishing, so for now, this is just a sign-up list. we&rsquo;ll email you to complete your purchase when it&rsquo;s ready.</p>
           <!-- Jotform: "indianamericana printed book list" (interest list, no payment) -->
           <a class="link" href="https://form.jotform.com/263184851629062" target="_blank" rel="noopener">pre-order your book</a>
         </div>
