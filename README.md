@@ -1,7 +1,7 @@
 # indianamericana
 
 The site for *indianamericana*: recipes & stories of an indian-and-american family in 1950s indiana.
-One static page (`index.html` + `images/`), deployed with Cloudflare Pages from `main`.
+Live at https://indianamericana.pages.dev. One static page (`index.html` + `images/`), deployed with Cloudflare Pages from `main`.
 
 ## Still to do
 - **PDF checkout link:** the "buy the pdf" link in `index.html` (search for `YOUR-`).
