@@ -69,7 +69,7 @@
     display: inline-flex; align-items: center; gap: 4px;
     font-size: 18px;
   }
-  .for-anil img { height: 58px; width: auto; margin: -8px 0 0 2px; }
+  .for-anil img { height: 76px; width: auto; margin: -8px 0 0 2px; }
   .hero .desc {
     margin: 26px auto 0; max-width: 46ch;
     color: var(--soft); font-size: 15px;
@@ -115,16 +115,12 @@
 
   /* ---------- previews ---------- */
   .previews { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
-  .preview > h3 {
-    font-weight: 400; font-size: 15px; letter-spacing: .08em;
-    text-decoration: underline; text-underline-offset: 5px; margin: 28px 0 10px;
+  .spotlight { padding: 140px 0; }
+  .spotlight blockquote {
+    margin: 0 auto; max-width: 820px; text-align: center;
+    font-size: clamp(22px, 3.4vw, 34px); line-height: 1.5; letter-spacing: -.01em;
   }
-  .preview > p { font-size: 14px; color: var(--soft); }
-  blockquote {
-    margin: 64px auto 0; max-width: 640px; text-align: center;
-    font-size: 20px; line-height: 1.6;
-  }
-  blockquote cite { display: block; margin-top: 14px; font-style: normal; font-size: 13px; color: var(--soft); }
+  .spotlight cite { display: block; margin-top: 26px; font-style: normal; font-size: 13px; letter-spacing: .06em; color: var(--soft); }
 
   /* ---------- contents ---------- */
   .contents { list-style: none; margin: 0; padding: 0; counter-reset: r; }
@@ -143,11 +139,12 @@
   .option + .option { border-left: 1px solid var(--ink); }
   .option h3 { font-weight: 400; font-size: 18px; margin: 0 0 6px; }
   .option .price { font-size: 30px; margin: 10px 0 4px; }
+  .option .note { font-size: 11.5px; line-height: 1.6; color: var(--soft); margin: 18px 0 0; }
   .option .soon { font-size: 15px; margin: 0; color: var(--soft); }
   .option .fine { font-size: 13px; color: var(--soft); margin: 0 0 24px; flex: 1; }
 
   footer { padding: 64px 0 80px; text-align: center; font-size: 13px; color: var(--soft); border-top: 1px solid var(--rule); }
-  footer img { height: 40px; margin: 0 auto 18px; opacity: .85; }
+  footer img { height: 50px; margin: 0 auto 18px; opacity: .85; }
 
   /* ---------- paper + photo pairs ---------- */
   .pair {
@@ -193,10 +190,9 @@
   /* typed paper: 8.5 x 11, type scales with the sheet (Courier at 10 chars/inch) */
   .paper {
     container-type: inline-size;
-    aspect-ratio: 8.5 / 11;
     display: flex; flex-direction: column;
   }
-  .paper > .paper-in { flex: 1; }
+  .paper > .paper-in { flex: 1; min-height: 129.4cqw; }   /* at least a letter-size sheet; longer text makes it taller */
   .paper-in {
     position: relative;
     min-height: 100%;
@@ -211,8 +207,8 @@
   .paper-in .date { text-align: right; margin-bottom: 3.2em; }
   .paper-in .closing { margin: 1.6em 0 0 45%; }
   .paper-in .closing p { margin: 0; }
-  .paper-in .sig { width: 15em; height: auto; margin: .3em 0 0 -1.5em; text-shadow: none; }
-  .paper-in .sig-jazmi { width: 7.5em; margin: .7em 0 0 .5em; }
+  .paper-in .sig { width: 16em; height: auto; margin: .6em 0 0 -1.5em; }
+  .paper-in .sig-jazmi { width: 8em; margin: .6em 0 0 .5em; }
   /* empty comb-binding slots, as if the page was taken out of the binding.
      The holes are cut with a mask so the page underneath (and the sheet's shadow) shows through. */
   .paper {
@@ -241,7 +237,6 @@
   .paper-in .typed { font: inherit; margin: 0; white-space: pre; }
   .preview .card { --pull: 0px; }
 
-  .hint { text-align: center; font-size: 12px; color: var(--soft); letter-spacing: .06em; margin: 26px 0 0; }
 
   /* ---------- the lifted sheet ---------- */
   body.lifted-open { overflow: hidden; }
@@ -322,7 +317,6 @@
   <!-- ===== page one: her letter + the photo ===== -->
   <section>
     <div class="wrap">
-      <p class="label"><span>page one</span></p>
       <div class="pair" data-paper="left">
         <!-- paper mock-up, transcribed from the original page -->
         <article class="card paper" style="--rot:-.7deg" tabindex="0" role="button" aria-label="Read her letter: Dear Anil, December 23, 1982">
@@ -343,7 +337,6 @@
           <figcaption>gus and betty, indiana, 1954</figcaption>
         </figure>
       </div>
-      <p class="hint">click a page to lift it out</p>
     </div>
   </section>
 
@@ -365,7 +358,7 @@
             <p>I shared the book for the first time this summer with my dear friend John. It only occurred to me to share it because he asked for exactly what it is: lentils and simple Indian home cooking and uncomplicated ingredients&hellip; the kind of thing that someone could make in, say, 1950s Indiana with just one dollar in their pocket.</p>
             <p>John is a retired English professor and immediately told me that I had to publish it. He said that it was food that needed to be eaten and stories that need to be heard and, most of all, that now was the time.</p>
             <p>So I asked anil for his permission, and then I googled how to publish a cookbook. What I found is that you have to have &ldquo;an audience.&rdquo; That&rsquo;s all that this account is. Please follow, share, enjoy. Show your support&hellip; and hopefully, someday, I&rsquo;ll be able to send you a copy in the mail along with an invitation to a very big family dinner party.</p>
-            <p>I love this book. I love my family. I love everything that they have loved and fought for and still stand for in the minds of everyone who really knew them. The idea that love can be controversial in this world is still crazy to me, so I am determined to have the bravery to talk about it and be proud of it and not be frightened of what someone on the internet might say.</p>
+            <p>I love this book. I love my family. I love everything that they have loved and fought for and still stand for in the minds of everyone who really knew them. The idea that love can be controversial in this world is still crazy to me, so today, it is with pleasure that I share my family&rsquo;s story.</p>
             <div class="closing">
               <p>Thank you,</p>
               <img class="sig sig-jazmi" src="images/signature-jazmi.png" alt="jazmi">
@@ -373,7 +366,16 @@
           </div>
         </article>
       </div>
-      <p class="hint">click a page to lift it out</p>
+    </div>
+  </section>
+
+  <!-- ===== spotlight ===== -->
+  <section class="spotlight">
+    <div class="wrap">
+      <blockquote>
+        &ldquo;So, it is with pleasure that I pass on to you our family recipes.&rdquo;
+        <cite>&mdash; mom, december 23, 1982</cite>
+      </blockquote>
     </div>
   </section>
 
@@ -393,8 +395,6 @@
               <p class="gap">Put lentils in the skillet and fry in liberal amount of butter.&nbsp; Add salt and red pepper.&nbsp; Cover with water - just enough to cover them.&nbsp; Cook slowly without a lid until the water evaporates.&nbsp; They should be done by that time.&nbsp; Taste - if they need butter, add some until they taste right.&nbsp; I like to cut raw onions on them and eat them with vinegar sometimes.</p>
             </div>
           </article>
-          <h3>FRIED LENTILS</h3>
-          <p>Christmas dinner, Fort Wayne, the year they had one dollar between them. Butter, salt, red pepper, and raw onions with vinegar on top.</p>
         </div>
         <div class="preview">
           <article class="card paper" style="--rot:.4deg" tabindex="0" role="button" aria-label="Read the Parathas page">
@@ -422,14 +422,8 @@ make smaller rounds and fry it in
 deep fat.</pre>
             </div>
           </article>
-          <h3>PARATHAS</h3>
-          <p>Three cups of flour, a bar of margarine, and a skillet. Knead &ldquo;until it feels rubbery and smooth.&rdquo;</p>
         </div>
       </div>
-      <blockquote>
-        &ldquo;Our Christmas dinner was lentils. We made sandwiches out of them &ndash; put them between toasted bread. No turkey could have tasted better.&rdquo;
-        <cite>&mdash; from FRIED LENTILS</cite>
-      </blockquote>
     </div>
   </section>
 
@@ -474,17 +468,18 @@ deep fat.</pre>
         <div class="option" id="pdf">
           <h3>the pdf</h3>
           <p class="price">$10</p>
-          <p class="fine">Every page, as she typed it. Pay $10, or more if you&rsquo;d like: everything we make goes to an annual family reunion where we cook her recipes and celebrate betty. The download arrives instantly after checkout, and by email. Questions or problems with your download? <a href="mailto:jazminamaiii@gmail.com">Email us</a> and we&rsquo;ll make it right.</p>
+          <p class="fine">Every page, as she typed it. Pay $10, or more if you&rsquo;d like: everything we make goes to an annual family reunion where we cook her recipes and celebrate betty.</p>
           <!-- PDF checkout: Lemon Squeezy product with "pay what you want" on, minimum $10.
                Replace the href with the product's checkout link (see README.md). -->
           <!-- TODO: swap this line for <a class="link" href="CHECKOUT-LINK">buy the pdf</a> -->
           <p class="soon">buy the pdf: coming soon (hopefully today)</p>
+          <p class="note">The download arrives instantly after checkout, and by email. Questions or problems with your download? <a href="mailto:jazminamaiii@gmail.com">Email us</a> and we&rsquo;ll make it right.</p>
         </div>
 
         <div class="option" id="preorder">
           <h3>the printed book</h3>
           <p class="price">coming soon</p>
-          <p class="fine">Comb-bound like the original. The price and ship date depend on the printer, so for now it&rsquo;s a list and nothing is charged. We&rsquo;ll email you when it&rsquo;s ready.</p>
+          <p class="fine">The price and ship date depend on the printer, so for now it&rsquo;s a list and nothing is charged. We&rsquo;ll email you when it&rsquo;s ready.</p>
           <!-- Jotform: "indianamericana printed book list" (interest list, no payment) -->
           <a class="link" href="https://form.jotform.com/263184851629062" target="_blank" rel="noopener">pre-order your book</a>
         </div>
