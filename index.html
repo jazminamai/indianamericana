@@ -129,7 +129,14 @@
   .contents li .tag { font-size: 12px; color: var(--blue); letter-spacing: .06em; }
 
   /* ---------- get the book ---------- */
-  .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ink); }
+  #get { overflow-x: clip; }
+  .options { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ink); }
+  .options .cutout {
+    position: absolute; z-index: 2; pointer-events: none;
+    width: 160px; height: auto; right: -118px; top: -230px;
+    transform: rotate(4deg);
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.12)) drop-shadow(0 8px 14px rgba(0,0,0,.12));
+  }
   .option { padding: 36px 30px 32px; display: flex; flex-direction: column; }
   .option + .option { border-left: 1px solid var(--ink); }
   .option h3 { font-weight: 400; font-size: 18px; margin: 0 0 6px; }
@@ -268,6 +275,7 @@
     .pair[data-paper="right"] .paper { margin-left: 6%; }
 
     .options { grid-template-columns: 1fr; }
+    .options .cutout { width: 110px; right: -8px; top: -200px; }
     .option + .option { border-left: 0; border-top: 1px solid var(--ink); }
     section { padding: 72px 0; }
     .hero { padding: 84px 0 56px; }
@@ -451,6 +459,7 @@ deep fat.</pre>
     <div class="wrap">
       <p class="label"><span>get the book</span></p>
       <div class="options">
+        <img class="cutout" src="images/gus-and-betty-cutout.png" alt="gus and betty, 1954, cut out of their photo" loading="lazy">
 
         <div class="option" id="list">
           <h3>mailing list</h3>
