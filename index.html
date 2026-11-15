@@ -133,9 +133,9 @@
   .options { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ink); }
   .options .cutout {
     position: absolute; z-index: 2; pointer-events: none;
-    width: 160px; height: auto; right: -118px; top: -230px;
+    width: 160px; height: auto; right: -118px; bottom: -8px;
     transform: rotate(4deg);
-    filter: drop-shadow(0 1px 1px rgba(0,0,0,.12)) drop-shadow(0 8px 14px rgba(0,0,0,.12));
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.08)) drop-shadow(0 3px 5px rgba(0,0,0,.05));
   }
   .option { padding: 36px 30px 32px; display: flex; flex-direction: column; }
   .option + .option { border-left: 1px solid var(--ink); }
@@ -275,7 +275,8 @@
     .pair[data-paper="right"] .paper { margin-left: 6%; }
 
     .options { grid-template-columns: 1fr; }
-    .options .cutout { width: 110px; right: -8px; top: -200px; }
+    .options .cutout { width: 84px; right: -8px; bottom: -6px; }
+    #preorder .fine, #preorder .link { margin-right: 72px; }
     .option + .option { border-left: 0; border-top: 1px solid var(--ink); }
     section { padding: 72px 0; }
     .hero { padding: 84px 0 56px; }
