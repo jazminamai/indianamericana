@@ -18,4 +18,4 @@ https://payhip.com/b/cBbJO
 Both are in the Jotform account; see who signed up under each form's **Submissions**.
 Jotform collects addresses but doesn't send newsletters. To write to the list, export the submissions (CSV) into an email tool such as Buttondown, Kit or Mailchimp, or connect Jotform's Mailchimp integration so new sign-ups are added automatically.
 
-When the printer and price are settled, email the printed-book list with a checkout link (Lemon Squeezy, or a Stripe Payment Link that collects a shipping address).
+When the printer and price are settled, email the printed-book list with a checkout link (Payhip, or a Stripe Payment Link that collects a shipping address).
