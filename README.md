@@ -3,20 +3,13 @@
 The site for *indianamericana*: recipes & stories of an indian-and-american family in 1950s indiana.
 Live at https://indianamericana.pages.dev. One static page (`index.html` + `images/`), deployed with Cloudflare Pages from `main`.
 
-## PDF checkout
-https://indianamericana.lemonsqueezy.com/checkout/buy/09f61457-1af8-4f00-857a-c6b193332175
+## PDF checkout (Payhip)
+https://payhip.com/b/cBbJO
 
-## The PDF ($10, pay more if you'd like)
-Use **Lemon Squeezy** (about 5% + 50¢ per sale). It hosts the file, delivers it the moment payment clears, and handles sales tax.
-
-1. Create a store and add a product: "indianamericana (pdf)".
-2. Pricing: turn on **Pay what you want**, minimum **$10**, suggested **$15**.
-3. Mention the reunion in the product description, e.g. "Pay $10, or more if you'd like: everything we make goes to an annual family reunion where we cook her recipes and celebrate betty."
-4. Add the PDF as the product's file, so buyers get a download page and an email with the link.
-5. Copy the product's checkout link into the "buy the pdf" link in `index.html`.
-6. Make a test purchase in test mode before going live.
-
-Payhip also works the same way, with "pay what you want" and a minimum price.
+- Price: "10+" (pay what you want, $10 minimum).
+- Payhip hosts the PDF and sends the download link right after payment, plus by email.
+- Product images and the store header are in the local `previews/` folder (not in this repo).
+- To fix a typo in the book, replace the file on the Payhip product; past buyers get the new version from their download link.
 
 ## Mailing list and printed-book list (Jotform)
 - Mailing list form: https://form.jotform.com/263185462976066
