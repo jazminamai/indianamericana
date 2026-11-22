@@ -96,7 +96,6 @@
     font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
     color: var(--soft); margin: 0 0 40px;
   }
-  .label span { text-decoration: underline; text-underline-offset: 5px; }
   h2 { font-weight: 400; font-size: 24px; line-height: 1.35; margin: 0 0 22px; }
   p { margin: 0 0 1.2em; }
   .caption { font-size: 13px; color: var(--soft); margin-top: 14px; }
@@ -141,10 +140,22 @@
     transform: rotate(4deg);
     filter: drop-shadow(0 1px 1px rgba(0,0,0,.08)) drop-shadow(0 3px 5px rgba(0,0,0,.05));
   }
-  .form-panel { border: 1px solid var(--ink); border-top: 0; scroll-margin-top: 96px; }
-  #get { scroll-margin-top: 60px; }
-  .form-bar { display: flex; justify-content: space-between; align-items: baseline; padding: 22px 30px 0; font-size: 15px; }
+  .form-panel {
+    position: fixed; inset: 0; z-index: 60;
+    display: flex; align-items: center; justify-content: center; padding: 16px;
+    background: rgba(255,255,255,.9); backdrop-filter: blur(3px);
+  }
+  .form-panel[hidden] { display: none; }
+  .form-box {
+    width: min(640px, 100%); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px);
+    display: flex; flex-direction: column;
+    background: #fff; border: 1px solid var(--ink);
+    box-shadow: 0 2px 6px rgba(0,0,0,.06), 0 30px 70px rgba(0,0,0,.14);
+  }
+  .form-bar { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 24px 12px; font-size: 15px; border-bottom: 1px solid var(--rule); }
+  .form-scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
   .form-panel iframe { display: block; width: 100%; height: 560px; border: 0; }
+  body.form-open { overflow: hidden; }
   .option { padding: 36px 30px 32px; display: flex; flex-direction: column; }
   .option + .option { border-left: 1px solid var(--ink); }
   .option h3 { font-weight: 400; font-size: 18px; margin: 0 0 6px; }
@@ -475,9 +486,9 @@ deep fat.</pre>
     <div class="wrap narrow">
       <p class="label"><span>the recipes</span></p>
       <ol class="contents">
-        <li>FRIED LENTILS <span class="dots"></span><span class="tag"><a href="#preview">preview</a></span></li>
+        <li>FRIED LENTILS <span class="dots"></span><span class="tag"><a href="#preview">try the recipe</a></span></li>
         <li>SOUPY GREEN LENTILS <span class="dots"></span></li>
-        <li>PARATHAS <span class="dots"></span><span class="tag"><a href="#preview">preview</a></span></li>
+        <li>PARATHAS <span class="dots"></span><span class="tag"><a href="#preview">try the recipe</a></span></li>
         <li>POTATO PANCAKES <span class="dots"></span></li>
         <li>DADDY&rsquo;S CONCOCTION <span class="dots"></span></li>
         <li>RAITA <span class="dots"></span></li>
@@ -529,14 +540,6 @@ deep fat.</pre>
 
       </div>
 
-      <!-- Jotform forms open here instead of on jotform.com -->
-      <div class="form-panel" id="form-panel" hidden>
-        <div class="form-bar">
-          <span class="form-title"></span>
-          <button type="button" class="link form-close">close</button>
-        </div>
-        <iframe title="sign-up form" src="about:blank"></iframe>
-      </div>
     </div>
   </section>
 
@@ -548,6 +551,17 @@ deep fat.</pre>
   <p>questions: <a href="mailto:jazminamaiii@gmail.com">jazminamaiii@gmail.com</a></p>
   <p>&copy; 2026 jazminamai &middot; all rights reserved</p>
 </footer>
+
+<!-- Jotform forms open in a pop-up over the page, so nobody gets moved -->
+<div class="form-panel" id="form-panel" role="dialog" aria-modal="true" aria-labelledby="form-title" hidden>
+  <div class="form-box">
+    <div class="form-bar">
+      <span class="form-title" id="form-title"></span>
+      <button type="button" class="link form-close">close</button>
+    </div>
+    <div class="form-scroll"><iframe title="sign-up form" src="about:blank"></iframe></div>
+  </div>
+</div>
 
 <script>
 (() => {
@@ -561,10 +575,11 @@ deep fat.</pre>
   const links = document.querySelectorAll('a[data-form]');
   let current = null;
 
+  let opener = null;
   function setExpanded() {
     links.forEach(a => a.setAttribute('aria-expanded', String(a.dataset.form === current)));
   }
-  function open(key) {
+  function open(key, from) {
     const f = FORMS[key];
     if (current !== key) {
       frame.src = 'https://form.jotform.com/' + f.id;
@@ -572,26 +587,29 @@ deep fat.</pre>
       frame.title = f.title;
       title.textContent = f.title;
     }
-    current = key; panel.hidden = false; setExpanded();
-    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    current = key; opener = from || null;
+    panel.hidden = false; document.body.classList.add('form-open'); setExpanded();
+    panel.querySelector('.form-close').focus({ preventScroll: true });
   }
   function close() {
-    panel.hidden = true; current = null; setExpanded();
-    document.getElementById('get').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (panel.hidden) return;
+    panel.hidden = true; document.body.classList.remove('form-open');
+    current = null; setExpanded();
+    if (opener) opener.focus({ preventScroll: true });
   }
   links.forEach(a => {
     a.setAttribute('aria-controls', 'form-panel');
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      if (current === a.dataset.form && a.closest('.option')) close(); else open(a.dataset.form);
-    });
+    a.setAttribute('aria-haspopup', 'dialog');
+    a.addEventListener('click', e => { e.preventDefault(); open(a.dataset.form, a); });
   });
   panel.querySelector('.form-close').addEventListener('click', close);
+  panel.addEventListener('click', e => { if (e.target === panel) close(); });   // click outside the box
+  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   // Jotform reports its own height so the form never needs an inner scrollbar
   addEventListener('message', e => {
     if (!/jotform/.test(e.origin) || typeof e.data !== 'string') return;
     const p = e.data.split(':');
-    if (p[0] === 'setHeight' && current && p[2] === FORMS[current].id) frame.style.height = (parseInt(p[1], 10) + 20) + 'px';
+    if (p[0] === 'setHeight' && current && p[2] === FORMS[current].id) frame.style.height = (parseInt(p[1], 10) + 20) + 'px';   // the box scrolls if it's taller than the screen
   });
   setExpanded();
 })();
