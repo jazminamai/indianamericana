@@ -206,8 +206,8 @@
   .snapshot figcaption { font-size: 13px; color: var(--soft); padding: 14px 2px 18px; }
   .instax { position: relative; }
   .instax figcaption {
-    position: absolute; left: 0; right: 0; bottom: 6.5%;
-    text-align: center; font-size: 13px; color: #555;
+    position: absolute; left: 7%; right: 0; bottom: 6.5%;
+    text-align: left; font-size: 13px; color: #555; white-space: nowrap;
   }
   .stage .instax figcaption { font-size: 18px; }
   .instax { background: transparent; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 10px 28px rgba(0,0,0,.12); }
@@ -295,7 +295,8 @@
     .pair { grid-template-columns: 1fr; }
     .pair .card { grid-column: 1 !important; grid-row: auto !important; }
     .pair .snapshot, .pair .instax { width: 72%; justify-self: end; margin-top: -14%; }
-    .pair[data-paper="right"] .instax { justify-self: start; margin: 0 0 -14%; }
+    .pair[data-paper="right"] .instax { justify-self: start; margin: 0 0 -3%; }
+    .instax figcaption { font-size: 11px; }
     .pair[data-paper="right"] .paper { margin-left: 6%; }
 
     .options { grid-template-columns: 1fr; }
@@ -386,7 +387,7 @@
       <div class="pair" data-paper="right">
         <figure class="card instax" style="--rot:-2.2deg" tabindex="0" role="button" aria-label="Enlarge the photo of jazmi">
           <img src="images/me-instax.jpg" alt="jazmi, laughing on a blue couch">
-          <figcaption>jazmi, 2026</figcaption>
+          <figcaption>jazmi, sitting on the couch, 2024</figcaption>
         </figure>
         <article class="card paper" style="--rot:.6deg" tabindex="0" role="button" aria-label="Read jazmi's letter">
           <div class="paper-in">
